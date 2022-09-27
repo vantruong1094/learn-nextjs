@@ -1,8 +1,11 @@
 import React from 'react'
+import Layout from "../components/Layout";
 
 function about() {
   return (
-    <div>This is about</div>
+    <Layout>
+      <h1>This is About</h1>
+    </Layout>
   )
 }
 

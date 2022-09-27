@@ -1,15 +1,12 @@
-import Link from "next/link";
 import React from "react";
-import { getListPost } from "../../services/posts";
-import Layout from "../../components/Layout";
+import { getListPost } from "../services/posts";
+import Layout from "../components/Layout";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { title } from "process";
-import Image from "next/image";
-import ImagePost from "../../components/image/ImagePost";
-import style from "../../styles/Text.module.scss"
+import ImagePost from "../components/image/ImagePost";
+import style from "../styles/Text.module.scss"
 import { useRouter } from "next/router";
 
 function ListPostPage({ posts }) {
