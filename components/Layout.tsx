@@ -1,18 +1,12 @@
-import Head from "next/head";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Container } from "react-bootstrap";
+import HeadApp from "./HeadApp";
 
 const Layout = ({ children }: any) => {
   return <Container>
-    <Head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" href="/favicon.ico" />
-      <title>My Blog Page</title>
-    </Head>
 
+    <HeadApp/>
     <header>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand className="px-3">
