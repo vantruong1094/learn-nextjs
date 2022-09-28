@@ -3,8 +3,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Container } from "react-bootstrap";
 
-const Layout = ({ children }) => (
-  <Container>
+const Layout = ({ children }: any) => {
+  return <Container>
     <Head>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,6 +27,6 @@ const Layout = ({ children }) => (
 
     <main>{children}</main>
   </Container>
-)
+}
 
 export default Layout;

@@ -8,18 +8,20 @@ import Col from "react-bootstrap/Col";
 import ImagePost from "../components/image/ImagePost";
 import style from "../styles/Text.module.scss"
 import { useRouter } from "next/router";
+import { InferGetStaticPropsType } from "next";
+import { IPost } from "../interfaces/IPost";
 
-function ListPostPage({ posts }) {
+function ListPostPage({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
 
   const router = useRouter()
 
-  const goToDetailPost = (postId) => {
+  const goToDetailPost = (postId: string) => {
     const path = "/posts/" + postId
     router.push(path)
   }
 
   return (
-    <Layout>
+    <Layout >
       <Row md={3} xs={1}>
         {posts.map((post) => (
           <Col key={post.id}>
@@ -27,7 +29,7 @@ function ListPostPage({ posts }) {
               className="my-2 shadow rounded bg-white border-0"
               
             >
-              <ImagePost src={post.urlImage} />
+              <ImagePost urlImage={post.urlImage} />
               <Card.Body>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text className={style.maxLine4}>{post.content}</Card.Text>
@@ -43,7 +45,7 @@ function ListPostPage({ posts }) {
 }
 
 export const getStaticProps = async () => {
-  const posts = await getListPost();
+  const posts: IPost[] = await getListPost();
   return {
     props: {
       posts,

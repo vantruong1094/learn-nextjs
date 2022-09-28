@@ -3,8 +3,19 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import { getPostById, getPostIds } from '../../services/posts'
 import style from "../../styles/PostDetailPage.module.scss"
+import { IPost } from "../../interfaces/IPost";
+import { InferGetStaticPropsType, GetStaticProps } from "next";
+import { ParsedUrlQuery } from "querystring"
 
-function PostDetail({ post }) {
+type Props = {
+    post: IPost
+}
+
+interface IParams extends ParsedUrlQuery {
+    id: string
+}
+
+function PostDetail({ post }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
         <div className={style.rootContainer}>
@@ -31,9 +42,9 @@ export const getStaticPaths = async () => {
     }
 }
 
-export const getStaticProps = async (context) => {
-
-    const post = await getPostById(context.params.id)
+export const getStaticProps: GetStaticProps<Props, IParams> = async (context) => {
+    const  params  = context.params as IParams
+    const post = await getPostById(params.id)
 
     return {
         props: {
