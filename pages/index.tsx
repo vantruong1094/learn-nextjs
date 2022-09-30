@@ -1,45 +1,53 @@
 import React from "react";
 import { getListPost } from "../services/posts";
 import Layout from "../components/Layout";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import ImagePost from "../components/image/ImagePost";
-import style from "../styles/Text.module.scss"
+import style from "../styles/Text.module.scss";
 import { useRouter } from "next/router";
 import { InferGetStaticPropsType } from "next";
 import { IPost } from "../interfaces/IPost";
+import { Wrap, WrapItem, Box, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Container, Tag } from "@chakra-ui/react";
 
-function ListPostPage({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
-
-  const router = useRouter()
+function ListPostPage({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const router = useRouter();
 
   const goToDetailPost = (postId: string) => {
-    const path = "/posts/" + postId
-    router.push(path)
-  }
+    const path = "/posts/" + postId;
+    router.push(path);
+  };
 
   return (
-    <Layout >
-      <Row md={3} xs={1}>
+    <Layout>
+      <Grid templateColumns="repeat(3, 1fr)" gap={4} paddingY={6}>
         {posts.map((post) => (
-          <Col key={post.id}>
-            <Card
-              className="my-2 shadow rounded bg-white border-0"
-              
-            >
+          <GridItem
+            style={{ cursor: "pointer" }}
+            key={post.id}
+            onClick={() => goToDetailPost(post.id)}
+          >
+            <Box boxShadow="0 4px 8px 4px rgba(0, 0, 0, 0.1)" borderRadius={6}>
               <ImagePost urlImage={post.urlImage} />
-              <Card.Body>
-                <Card.Title>{post.title}</Card.Title>
-                <Card.Text className={style.maxLine4}>{post.content}</Card.Text>
-                <Button variant="primary" onClick={() => goToDetailPost(post.id)}>Detail</Button>
-              </Card.Body>
-            </Card>
-          </Col>
+              <Container py="1rem">
+                <Tag
+                  fontWeight={"semibold"}
+                  borderRadius={"full"}
+                  px={"12px"}
+                  py="8px"
+                >
+                  {post.category}
+                </Tag>
+                <Text fontSize={24} fontWeight="semibold">
+                  {post.title}
+                </Text>
+                <Text noOfLines={4}>{post.content}</Text>
+              </Container>
+            </Box>
+          </GridItem>
         ))}
-      </Row>
-
+      </Grid>
     </Layout>
   );
 }

@@ -1,21 +1,23 @@
-
 .rootContainer {
-    display: flex;
-    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(120, 117, 117, 0.19);
-    margin-top: 1rem;
-    border-radius: 6px;
+  display: flex;
+  box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.1),
+    0 6px 20px 0 rgba(120, 117, 117, 0.19);
+  margin-top: 1rem;
+  border-radius: 6px;
+
+  .contentLeft {
+    width: 35%;
 
     img {
-        width: 100%;
-        height: auto;
+      width: 100%;
+      height: auto;
+      border-top-left-radius: 6px;
+      border-bottom-left-radius: 6px;
     }
-}
+  }
 
-.contentLeft {
-    width: 35%;
-}
-
-.contentRight {
+  .contentRight {
     width: 65%;
     padding: 1rem;
+  }
 }
